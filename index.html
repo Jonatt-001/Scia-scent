@@ -4,8 +4,32 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <meta name="theme-color" content="#ffffff">
+<link rel="canonical" href="/">
 <meta name="description" content="Scia Scenthesis — discover fine fragrance, perfume and scent collections curated for every signature.">
 <title>Scia Scenthesis — Fragrance & Perfume</title>
+
+<!-- OG IMAGE NOTE: replace the absolute og:image URL below with your own hosted 1200x630 brand image when deployed. -->
+<!-- Search / social sharing metadata -->
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta name="author" content="Scia Scenthesis">
+<meta name="application-name" content="Scia Scenthesis">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Scia Scenthesis">
+<meta property="og:title" content="Scia Scenthesis — Fine Fragrance">
+<meta property="og:description" content="Discover a considered edit of modern perfume, timeless classics and expressive scents selected for every mood.">
+<meta property="og:image" content="https://images.unsplash.com/photo-1594035910387-fea47794261f?auto=format&amp;fit=crop&amp;w=1200&amp;h=630&amp;q=88">
+<meta property="og:image:secure_url" content="https://images.unsplash.com/photo-1594035910387-fea47794261f?auto=format&amp;fit=crop&amp;w=1200&amp;h=630&amp;q=88">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Scia Scenthesis fine fragrance collection">
+<meta property="og:locale" content="en_NG">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Scia Scenthesis — Fine Fragrance">
+<meta name="twitter:description" content="A considered edit of modern perfume, timeless classics and expressive scents.">
+<meta name="twitter:image" content="https://images.unsplash.com/photo-1594035910387-fea47794261f?auto=format&amp;fit=crop&amp;w=1200&amp;h=630&amp;q=88">
+<meta name="twitter:image:alt" content="Scia Scenthesis fine fragrance collection">
+
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -1313,10 +1337,477 @@ html,body{overflow-x:hidden}
   }
 }
 
+
+/* =========================================================
+   SCIA SCENTHESIS — PREMIUM INITIAL LOADER
+   ========================================================= */
+body.loader-active{
+  overflow:hidden;
+}
+
+/* The loader is deliberately above every site layer. */
+.site-loader{
+  position:fixed;
+  inset:0;
+  z-index:99999;
+  display:grid;
+  place-items:center;
+  background:#090b0e;
+  color:#fff;
+  overflow:hidden;
+  isolation:isolate;
+  opacity:1;
+  visibility:visible;
+  transition:
+    opacity 900ms cubic-bezier(.22,.61,.36,1),
+    visibility 900ms;
+}
+.site-loader.is-leaving{
+  opacity:0;
+  visibility:hidden;
+  pointer-events:none;
+}
+
+/* Fine film/grain layer */
+.site-loader::before{
+  content:"";
+  position:absolute;
+  inset:-50%;
+  z-index:-1;
+  opacity:.075;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.8'/%3E%3C/svg%3E");
+  transform:rotate(7deg);
+  pointer-events:none;
+}
+
+/* Subtle ambient cyan light */
+.site-loader::after{
+  content:"";
+  position:absolute;
+  width:75vw;
+  height:75vw;
+  max-width:760px;
+  max-height:760px;
+  border-radius:50%;
+  background:radial-gradient(
+    circle,
+    rgba(19,184,198,.14) 0%,
+    rgba(19,184,198,.045) 28%,
+    rgba(19,184,198,0) 70%
+  );
+  filter:blur(10px);
+  animation:loaderAmbient 5s ease-in-out infinite alternate;
+  pointer-events:none;
+}
+@keyframes loaderAmbient{
+  from{transform:scale(.86) translate3d(-4%,2%,0)}
+  to{transform:scale(1.08) translate3d(5%,-3%,0)}
+}
+
+.loader-shell{
+  position:relative;
+  width:min(84vw,380px);
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  text-align:center;
+}
+
+/* Premium monogram */
+.loader-emblem{
+  position:relative;
+  width:108px;
+  height:108px;
+  display:grid;
+  place-items:center;
+  margin-bottom:30px;
+  opacity:0;
+  transform:scale(.72);
+  animation:loaderEmblemIn 1100ms cubic-bezier(.16,1,.3,1) 120ms forwards;
+}
+.loader-emblem::before{
+  content:"";
+  position:absolute;
+  inset:4px;
+  border:1px solid rgba(255,255,255,.2);
+  border-radius:29px;
+  transform:rotate(45deg) scale(.72);
+  animation:loaderDiamond 1400ms cubic-bezier(.16,1,.3,1) 250ms forwards;
+}
+.loader-emblem::after{
+  content:"";
+  position:absolute;
+  inset:-12px;
+  border:1px solid rgba(19,184,198,.14);
+  border-radius:50%;
+  animation:loaderRingSlow 7s linear infinite;
+}
+.loader-mark{
+  position:relative;
+  width:74px;
+  height:74px;
+  border:2px solid rgba(255,255,255,.95);
+  border-radius:22px;
+  display:grid;
+  place-items:center;
+  background:linear-gradient(145deg,rgba(255,255,255,.09),rgba(255,255,255,.015));
+  box-shadow:
+    inset 0 0 30px rgba(255,255,255,.045),
+    0 18px 50px rgba(0,0,0,.3);
+}
+.loader-mark::before{
+  content:"";
+  width:25px;
+  height:34px;
+  border-left:3px solid #fff;
+  border-right:3px solid #fff;
+  border-radius:7px;
+  transform:skew(-4deg);
+}
+.loader-mark::after{
+  content:"";
+  position:absolute;
+  width:9px;
+  height:9px;
+  right:12px;
+  top:12px;
+  border-radius:50%;
+  background:#16bac7;
+  box-shadow:0 0 0 6px rgba(22,186,199,.09),0 0 22px rgba(22,186,199,.7);
+}
+@keyframes loaderEmblemIn{
+  0%{opacity:0;transform:scale(.72) rotate(-8deg)}
+  65%{opacity:1;transform:scale(1.035) rotate(1deg)}
+  100%{opacity:1;transform:scale(1) rotate(0)}
+}
+@keyframes loaderDiamond{
+  0%{opacity:0;transform:rotate(45deg) scale(.55)}
+  100%{opacity:1;transform:rotate(45deg) scale(1)}
+}
+@keyframes loaderRingSlow{
+  to{transform:rotate(360deg)}
+}
+
+/* Brand lockup */
+.loader-brand{
+  overflow:hidden;
+  margin-bottom:8px;
+}
+.loader-brand span{
+  display:block;
+  font-size:clamp(30px,8vw,42px);
+  line-height:1;
+  font-weight:700;
+  letter-spacing:-.075em;
+  opacity:0;
+  transform:translateY(110%);
+  animation:loaderTextUp 850ms cubic-bezier(.16,1,.3,1) 550ms forwards;
+}
+.loader-brand-sub{
+  font-size:9px;
+  letter-spacing:.35em;
+  text-transform:uppercase;
+  color:rgba(255,255,255,.52);
+  opacity:0;
+  transform:translateY(8px);
+  animation:loaderSubIn 700ms ease 850ms forwards;
+}
+@keyframes loaderTextUp{
+  to{opacity:1;transform:translateY(0)}
+}
+@keyframes loaderSubIn{
+  to{opacity:1;transform:translateY(0)}
+}
+
+/* Loading line */
+.loader-status{
+  width:min(74vw,280px);
+  margin-top:40px;
+}
+.loader-status-row{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:20px;
+  margin-bottom:10px;
+}
+.loader-status-text{
+  font-size:9px;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+  color:rgba(255,255,255,.47);
+}
+.loader-percent{
+  font-variant-numeric:tabular-nums;
+  font-size:9px;
+  letter-spacing:.12em;
+  color:rgba(255,255,255,.72);
+}
+.loader-track{
+  height:1px;
+  width:100%;
+  background:rgba(255,255,255,.12);
+  overflow:hidden;
+}
+.loader-bar{
+  display:block;
+  width:0%;
+  height:100%;
+  background:linear-gradient(90deg,#fff,#18b8c4);
+  box-shadow:0 0 12px rgba(24,184,196,.65);
+  transition:width 160ms linear;
+}
+
+/* Corner metadata */
+.loader-corner{
+  position:absolute;
+  font-size:8px;
+  letter-spacing:.2em;
+  text-transform:uppercase;
+  color:rgba(255,255,255,.25);
+}
+.loader-corner.tl{top:28px;left:28px}
+.loader-corner.br{right:28px;bottom:28px}
+
+/* Exit flourish */
+.site-loader.is-leaving .loader-shell{
+  animation:loaderExitShell 700ms cubic-bezier(.22,.61,.36,1) forwards;
+}
+.site-loader.is-leaving::after{
+  animation:loaderExitGlow 800ms ease forwards;
+}
+@keyframes loaderExitShell{
+  to{opacity:0;transform:translateY(-20px) scale(.97)}
+}
+@keyframes loaderExitGlow{
+  to{opacity:0;transform:scale(1.35)}
+}
+
+/* Avoid a harsh flash if the page is cached */
+html.loader-ready .site-loader{
+  transition-duration:700ms;
+}
+
+@media(max-width:759px){
+  .loader-emblem{width:94px;height:94px}
+  .loader-mark{width:66px;height:66px}
+  .loader-mark::before{width:22px;height:30px}
+  .loader-emblem::before{border-radius:25px}
+  .loader-status{margin-top:34px}
+  .loader-corner.tl{top:20px;left:20px}
+  .loader-corner.br{right:20px;bottom:20px}
+}
+
+@media(prefers-reduced-motion:reduce){
+  .site-loader::after,
+  .loader-emblem,
+  .loader-emblem::before,
+  .loader-emblem::after,
+  .loader-brand span,
+  .loader-brand-sub{
+    animation:none!important;
+  }
+  .loader-emblem,
+  .loader-brand span,
+  .loader-brand-sub{
+    opacity:1!important;
+    transform:none!important;
+  }
+}
+
+
+/* =========================================================
+   SCENTHESIS — PERSISTENT LUXURY HEADER
+   ========================================================= */
+.site-header{
+  position:fixed !important;
+  top:0;
+  left:0;
+  right:0;
+  z-index:10000;
+  height:var(--header-h);
+  background:rgba(255,255,255,.94);
+  border-bottom:1px solid rgba(20,22,24,.10);
+  backdrop-filter:blur(20px) saturate(150%);
+  -webkit-backdrop-filter:blur(20px) saturate(150%);
+  box-shadow:0 2px 0 rgba(255,255,255,.7);
+  transform:translate3d(0,0,0);
+  will-change:transform,box-shadow,background-color;
+  transition:
+    background-color 450ms var(--motion-ease),
+    box-shadow 450ms var(--motion-ease),
+    border-color 450ms ease;
+}
+.site-header.header-scrolled{
+  background:rgba(255,255,255,.88);
+  border-bottom-color:rgba(20,22,24,.14);
+  box-shadow:0 12px 40px rgba(0,0,0,.075);
+}
+.header-inner{
+  position:relative;
+  z-index:1;
+}
+
+/* Fixed header compensation. The loader itself remains fixed
+   above this layer, so there is no layout jump after it exits. */
+main#top{
+  padding-top:var(--header-h);
+}
+.site-header + .search-panel,
+.site-header + .drawer{
+  z-index:11000;
+}
+
+/* Premium hairline / light sweep */
+.site-header::after{
+  content:"";
+  position:absolute;
+  left:0;
+  right:0;
+  bottom:-1px;
+  height:1px;
+  background:linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(27,184,197,.12) 25%,
+    rgba(27,184,197,.55) 50%,
+    rgba(27,184,197,.12) 75%,
+    transparent 100%
+  );
+  opacity:.55;
+  pointer-events:none;
+}
+
+/* Keep loader transition from ever changing header geometry. */
+body.loader-active .site-header{
+  visibility:hidden;
+}
+body:not(.loader-active) .site-header{
+  visibility:visible;
+}
+
+
+/* =========================================================
+   SCENTHESIS — FINAL LUXURY POLISH
+   ========================================================= */
+body{
+  background:#fbfbfa;
+}
+main#top{
+  background:#fff;
+}
+
+/* Refined global type rendering */
+h1,h2,h3,h4,.hero-title{
+  text-wrap:balance;
+}
+p{
+  text-wrap:pretty;
+}
+
+/* Luxury section rhythm */
+.intro,
+.category-strip,
+.shop,
+.editorial,
+.newsletter{
+  position:relative;
+}
+.intro::before,
+.category-strip::before,
+.shop::before,
+.editorial::before{
+  content:"";
+  position:absolute;
+  left:5%;
+  right:5%;
+  top:0;
+  height:1px;
+  background:linear-gradient(90deg,transparent,var(--line),transparent);
+  opacity:.55;
+}
+
+/* More sophisticated category framing */
+.category-grid{
+  box-shadow:0 22px 60px rgba(0,0,0,.035);
+}
+.category-card{
+  background:
+    radial-gradient(circle at 80% 10%,rgba(255,255,255,.95),transparent 34%),
+    linear-gradient(145deg,#fff,#fbfbfa);
+  border-color:#dfe1e2;
+}
+.category-card strong{
+  letter-spacing:-.045em;
+}
+
+/* Catalogue gets an editorial backdrop */
+.shop{
+  background:
+    radial-gradient(circle at 85% 12%,rgba(27,184,197,.045),transparent 24%),
+    #fff;
+}
+
+/* Premium product typography */
+.product-name{
+  letter-spacing:-.035em;
+}
+.product-price{
+  letter-spacing:-.025em;
+}
+
+/* Refined floating chat */
+.chat{
+  border:1px solid rgba(0,0,0,.1);
+  box-shadow:
+    0 18px 55px rgba(0,0,0,.13),
+    0 2px 0 rgba(255,255,255,.85) inset;
+}
+
+/* Desktop luxury breathing room */
+@media(min-width:900px){
+  .header-inner{padding-left:32px;padding-right:32px}
+  .logo{font-size:29px}
+  .intro,
+  .category-strip,
+  .shop,
+  .editorial{
+    scroll-margin-top:calc(var(--header-h) + 20px);
+  }
+}
+
 </style>
 </head>
 
-<body>
+<body class="loader-active">
+
+<!-- Premium Scia Scenthesis page loader -->
+<div class="site-loader" id="siteLoader" role="status" aria-label="Loading Scia Scenthesis">
+  <div class="loader-corner tl">SCIA / 01</div>
+  <div class="loader-corner br">FINE FRAGRANCE</div>
+
+  <div class="loader-shell">
+    <div class="loader-emblem" aria-hidden="true">
+      <div class="loader-mark"></div>
+    </div>
+
+    <div class="loader-brand">
+      <span>Scenthesis</span>
+    </div>
+    <div class="loader-brand-sub">A signature worth remembering</div>
+
+    <div class="loader-status">
+      <div class="loader-status-row">
+        <span class="loader-status-text" id="loaderStatusText">Preparing collection</span>
+        <span class="loader-percent" id="loaderPercent">00%</span>
+      </div>
+      <div class="loader-track">
+        <span class="loader-bar" id="loaderBar"></span>
+      </div>
+    </div>
+  </div>
+</div>
+
 
 <div class="utility">
   <div>Complimentary delivery on qualifying orders</div>
@@ -1914,6 +2405,7 @@ document.addEventListener("visibilitychange",()=>{
 
     if(header){
       header.classList.toggle("header-scrolled", y > 12);
+      header.style.visibility = "visible";
     }
 
     /* Collection depth motion */
@@ -2018,6 +2510,129 @@ document.addEventListener("visibilitychange",()=>{
   observeCards();
 
   new MutationObserver(observeCards).observe(grid,{childList:true});
+})();
+
+
+/* =========================================================
+   PREMIUM PAGE LOADER ENGINE
+   ========================================================= */
+(function initSiteLoader(){
+  const loader = document.getElementById("siteLoader");
+  const bar = document.getElementById("loaderBar");
+  const percent = document.getElementById("loaderPercent");
+  const status = document.getElementById("loaderStatusText");
+
+  if(!loader || !bar || !percent || !status) return;
+
+  const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const minimumDisplay = reducedMotion ? 650 : 1450;
+  const startedAt = performance.now();
+
+  const stages = [
+    [8,"Preparing collection"],
+    [24,"Curating fragrance"],
+    [43,"Composing experience"],
+    [62,"Refining details"],
+    [79,"Almost ready"],
+    [92,"Opening Scia Scenthesis"],
+    [100,"Welcome"]
+  ];
+
+  let current = 0;
+  let progress = 0;
+  let raf = null;
+  let finished = false;
+
+  function setProgress(value){
+    progress = Math.max(progress,Math.min(100,value));
+    bar.style.width = progress + "%";
+    percent.textContent = String(Math.round(progress)).padStart(2,"0") + "%";
+
+    for(let i=stages.length-1;i>=0;i--){
+      if(progress >= stages[i][0]){
+        status.textContent = stages[i][1];
+        break;
+      }
+    }
+  }
+
+  /* Smooth simulated progress instead of a crude instant 0 → 100 jump. */
+  function animateProgress(){
+    if(finished) return;
+
+    const elapsed = performance.now() - startedAt;
+    const target = Math.min(96,(elapsed / minimumDisplay) * 96);
+    const next = progress + (target - progress) * .075;
+
+    setProgress(next);
+
+    if(progress < 95){
+      raf = requestAnimationFrame(animateProgress);
+    }
+  }
+
+  function finish(){
+    if(finished) return;
+    finished = true;
+
+    if(raf) cancelAnimationFrame(raf);
+
+    setProgress(100);
+    status.textContent = "Welcome";
+
+    const elapsed = performance.now() - startedAt;
+    const remaining = Math.max(0,minimumDisplay - elapsed);
+
+    setTimeout(() => {
+      /*
+       * Release the loader in a deterministic order.
+       * iOS Safari can retain the old scroll/overflow layout
+       * state after a fixed overlay disappears, so explicitly
+       * restore the root scrolling state before exposing the header.
+       */
+      document.documentElement.style.removeProperty("overflow");
+      document.body.style.removeProperty("overflow");
+      document.body.classList.remove("loader-active");
+      document.documentElement.classList.add("loader-ready");
+
+      /* Force one layout pass before the loader begins leaving. */
+      void document.body.offsetHeight;
+
+      loader.classList.add("is-leaving");
+
+      const header = document.querySelector(".site-header");
+      if(header){
+        header.style.visibility = "visible";
+        header.classList.toggle("header-scrolled", window.scrollY > 12);
+      }
+
+      setTimeout(() => {
+        loader.remove();
+        document.body.classList.remove("loader-active");
+        document.documentElement.style.removeProperty("overflow");
+        document.body.style.removeProperty("overflow");
+
+        /* Final Safari/iOS repaint of the fixed header. */
+        if(header){
+          header.style.transform = "translate3d(0,0,0)";
+          void header.offsetHeight;
+          header.style.transform = "";
+        }
+      },950);
+    },remaining);
+  }
+
+  /* Start immediately, but never block the page forever. */
+  requestAnimationFrame(animateProgress);
+
+  if(document.readyState === "complete"){
+    finish();
+  }else{
+    window.addEventListener("load",finish,{once:true});
+  }
+
+  /* Defensive fail-safe for slow external images/network resources. */
+  setTimeout(finish,5200);
 })();
 
 renderProducts();
