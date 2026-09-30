@@ -1776,6 +1776,549 @@ p{
   }
 }
 
+
+
+/* ===== FEATURED COLLECTION — PERFUME IMAGE ENTRANCE ===== */
+.collection-perfume{
+  position:absolute;
+  z-index:4;
+  right:clamp(10px,5vw,88px);
+  bottom:-18px;
+  width:clamp(190px,32vw,430px);
+  pointer-events:none;
+  opacity:0;
+  transform:translate3d(130px,42px,0) scale(.92) rotate(2.5deg);
+  filter:blur(6px) drop-shadow(0 30px 38px rgba(0,0,0,.18));
+  transition:
+    opacity 900ms var(--motion-ease),
+    transform 1250ms var(--motion-smooth),
+    filter 1100ms var(--motion-smooth);
+  will-change:opacity,transform,filter;
+}
+
+.collection-perfume img{
+  width:100%;
+  height:auto;
+  display:block;
+  object-fit:contain;
+  transform-origin:center bottom;
+}
+
+.collection.is-visible .collection-perfume{
+  opacity:1;
+  transform:translate3d(0,0,0) scale(1) rotate(0deg);
+  filter:blur(0) drop-shadow(0 30px 38px rgba(0,0,0,.18));
+}
+
+/* A very subtle floating finish after the entrance completes. */
+.collection.is-visible .collection-perfume img{
+  animation:collectionPerfumeFloat 6.5s ease-in-out 1.25s infinite alternate;
+}
+
+@keyframes collectionPerfumeFloat{
+  from{transform:translate3d(0,0,0) rotate(0deg)}
+  to{transform:translate3d(0,-7px,0) rotate(-.55deg)}
+}
+
+@media(max-width:759px){
+  .collection-perfume{
+    right:-8px;
+    bottom:-10px;
+    width:min(58vw,300px);
+    transform:translate3d(100px,34px,0) scale(.91) rotate(2.5deg);
+  }
+
+  .collection.is-visible .collection-perfume{
+    transform:translate3d(0,0,0) scale(1) rotate(0deg);
+  }
+
+  .collection-perfume img{
+    max-height:370px;
+  }
+}
+
+@media(max-width:430px){
+  .collection-inner{
+    min-height:720px;
+  }
+
+  .collection-perfume{
+    width:min(60vw,270px);
+    right:-6px;
+    bottom:-6px;
+  }
+}
+
+@media(prefers-reduced-motion:reduce){
+  .collection-perfume,
+  .collection.is-visible .collection-perfume{
+    opacity:1;
+    transform:none;
+    filter:none;
+    transition:none;
+  }
+
+  .collection.is-visible .collection-perfume img{
+    animation:none;
+  }
+}
+
+
+/* =========================================================
+   SCIA SCENTHESIS — LUXURY HOUSE UI REFINEMENT
+   ========================================================= */
+:root{
+  --lux-ink:#0b0d0d;
+  --lux-ivory:#f6f3ed;
+  --lux-paper:#fbfaf7;
+  --lux-champagne:#c5a875;
+  --lux-champagne-soft:#e1d1ae;
+  --lux-teal:#164f52;
+  --lux-deep:#0d2e30;
+  --lux-line:rgba(18,25,25,.13);
+  --lux-shadow:0 24px 80px rgba(7,18,18,.12);
+}
+
+/* Brand lock-up: the complete brand is always visible. */
+.logo-word{
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  gap:2px;
+  line-height:.82;
+  letter-spacing:-.055em;
+}
+.logo-word small{
+  display:block;
+  font-family:"DM Sans",Arial,sans-serif;
+  font-size:7px;
+  line-height:1;
+  font-weight:700;
+  letter-spacing:.30em;
+  margin-left:1px;
+  color:#555b5b;
+}
+.logo-word strong{
+  display:block;
+  font-size:25px;
+  line-height:.9;
+  font-weight:700;
+  letter-spacing:-.075em;
+}
+
+.site-header{
+  background:rgba(250,250,248,.94);
+  border-bottom-color:rgba(0,0,0,.09);
+  box-shadow:0 1px 0 rgba(255,255,255,.75) inset;
+}
+.site-header.header-scrolled{
+  background:rgba(250,249,246,.88);
+  box-shadow:0 12px 42px rgba(10,18,18,.09),0 1px 0 rgba(255,255,255,.7) inset;
+}
+.site-header::after{
+  content:"";
+  position:absolute;
+  left:0;
+  right:0;
+  bottom:-1px;
+  height:1px;
+  background:linear-gradient(90deg,transparent,rgba(197,168,117,.42),transparent);
+  pointer-events:none;
+}
+.header-inner{position:relative}
+.header-actions .icon-btn{
+  transition:transform 350ms var(--motion-smooth),opacity 250ms ease;
+}
+.header-actions .icon-btn:hover{transform:translateY(-2px)}
+
+@media(max-width:759px){
+  .logo-word strong{font-size:22px}
+  .logo-word small{font-size:6px;letter-spacing:.28em}
+  .logo{gap:8px}
+}
+
+/* Luxury hero treatment. */
+.hero{
+  background:#071617;
+  isolation:isolate;
+}
+.hero::after{
+  background:
+    radial-gradient(circle at 72% 36%,rgba(207,181,130,.10),transparent 24%),
+    linear-gradient(90deg,rgba(4,12,12,.78) 0%,rgba(4,12,12,.40) 46%,rgba(4,12,12,.08) 100%),
+    linear-gradient(180deg,rgba(0,0,0,.02) 10%,rgba(0,0,0,.16) 52%,rgba(0,0,0,.82) 100%);
+}
+.hero::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index:2;
+  pointer-events:none;
+  opacity:.14;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 160 160' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='grain'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.72' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23grain)' opacity='.38'/%3E%3C/svg%3E");
+  mix-blend-mode:soft-light;
+}
+.hero-slide img{filter:saturate(.82) contrast(1.08) brightness(.91)}
+.hero-slide.active img{filter:saturate(.90) contrast(1.06) brightness(.95)}
+.hero-kicker{
+  display:flex;
+  align-items:center;
+  gap:11px;
+  letter-spacing:.28em;
+}
+.hero-kicker::before{
+  content:"";
+  width:28px;
+  height:1px;
+  background:var(--lux-champagne);
+  box-shadow:0 0 14px rgba(197,168,117,.45);
+}
+.hero-title{
+  max-width:860px;
+  letter-spacing:-.075em;
+  text-shadow:0 5px 38px rgba(0,0,0,.48);
+}
+.hero-sub{
+  max-width:520px;
+  color:rgba(255,255,255,.82);
+  font-size:14px;
+  letter-spacing:.005em;
+}
+.hero .btn{
+  min-height:52px;
+  letter-spacing:.18em;
+  font-size:10px;
+}
+.hero .btn-light{
+  background:var(--lux-ivory);
+  border-color:var(--lux-ivory);
+  box-shadow:0 18px 50px rgba(0,0,0,.22);
+}
+.hero .btn-light::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(110deg,transparent 25%,rgba(255,255,255,.65) 50%,transparent 75%);
+  transform:translateX(-130%);
+  transition:transform 900ms var(--motion-ease);
+  pointer-events:none;
+}
+.hero .btn-light{position:relative;overflow:hidden}
+.hero .btn-light:hover::after{transform:translateX(130%)}
+.hero .btn-outline{
+  border-color:rgba(197,168,117,.72)!important;
+  color:#fff!important;
+  background:rgba(7,19,19,.22);
+}
+.hero-controls{
+  border-color:rgba(197,168,117,.28);
+  background:rgba(4,15,15,.28);
+  box-shadow:0 12px 35px rgba(0,0,0,.14);
+}
+.hero-progress-bar{background:var(--lux-champagne);box-shadow:0 0 12px rgba(197,168,117,.55)}
+.hero-arrow:hover{border-color:var(--lux-champagne);color:var(--lux-champagne)}
+.hero-dot.active{background:var(--lux-champagne)}
+
+/* Editorial marquee. */
+.announcement{
+  background:#0c1717;
+  border-bottom:1px solid rgba(197,168,117,.18);
+}
+.marquee span{color:#e7dfcf;letter-spacing:.24em}
+
+/* Intro becomes an editorial fragrance-house statement. */
+.intro{
+  position:relative;
+  background:var(--lux-ivory);
+  padding-top:105px;
+  padding-bottom:105px;
+}
+.intro::before{
+  content:"SCIA SCENTHESIS";
+  position:absolute;
+  top:36px;
+  right:20px;
+  font-size:8px;
+  letter-spacing:.34em;
+  color:rgba(11,13,13,.42);
+}
+.intro > div:first-child{position:relative}
+.intro > div:first-child::before{
+  content:"";
+  display:block;
+  width:42px;
+  height:1px;
+  margin-bottom:23px;
+  background:var(--lux-champagne);
+}
+.intro h2{
+  font-size:clamp(44px,8.7vw,92px);
+  line-height:.91;
+  color:#111615;
+}
+.intro-copy{
+  color:#555b59;
+  font-size:15px;
+  line-height:1.85;
+  max-width:500px;
+}
+.intro-copy .text-link{display:inline-flex;align-items:center;gap:12px;color:#111615}
+
+/* Featured collection becomes the visual signature moment. */
+.collection{
+  position:relative;
+  background:
+    radial-gradient(circle at 76% 68%,rgba(197,168,117,.17),transparent 23%),
+    radial-gradient(circle at 20% 12%,rgba(255,255,255,.06),transparent 28%),
+    linear-gradient(135deg,#3f5f5d 0%,#174b4e 50%,#0c3032 100%);
+  color:#f7f2e7;
+}
+.collection::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  background:
+    linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px),
+    linear-gradient(0deg,rgba(255,255,255,.025) 1px,transparent 1px);
+  background-size:90px 90px;
+  mask-image:linear-gradient(90deg,black,transparent 80%);
+  opacity:.28;
+}
+.collection-inner{
+  min-height:760px;
+  padding-top:74px;
+  padding-bottom:76px;
+  isolation:isolate;
+}
+.collection .eyebrow{
+  color:rgba(246,243,237,.62);
+  letter-spacing:.30em;
+}
+.collection-title{
+  position:relative;
+  z-index:2;
+  color:#f6f0e3;
+  font-size:clamp(64px,15vw,154px);
+  line-height:.74;
+  text-shadow:0 15px 55px rgba(0,0,0,.18);
+}
+.signature{
+  position:relative;
+  z-index:2;
+  color:var(--lux-champagne-soft);
+  font-size:48px;
+  margin-top:42px;
+  margin-bottom:30px;
+  text-shadow:0 8px 25px rgba(0,0,0,.18);
+}
+.collection-copy{
+  position:relative;
+  z-index:2;
+  max-width:500px;
+  color:rgba(246,243,237,.78);
+  font-weight:400;
+  line-height:1.8;
+}
+.collection-link{
+  position:relative;
+  z-index:5;
+  color:#f7f0e3;
+  border-bottom:1px solid rgba(197,168,117,.52);
+  padding-bottom:9px;
+  letter-spacing:.21em;
+}
+.collection-link:after{color:var(--lux-champagne)}
+.orbit{
+  z-index:1;
+  border-color:rgba(197,168,117,.42);
+  filter:drop-shadow(0 0 18px rgba(197,168,117,.06));
+}
+.orbit:before,.orbit:after{border-color:rgba(197,168,117,.27)}
+.collection-perfume{
+  z-index:4;
+  right:clamp(-20px,3vw,62px);
+  bottom:-18px;
+  width:clamp(220px,37vw,505px);
+  filter:blur(7px) drop-shadow(0 38px 48px rgba(0,0,0,.40));
+}
+.collection.is-visible .collection-perfume{
+  filter:blur(0) drop-shadow(0 38px 48px rgba(0,0,0,.40));
+}
+.collection-perfume::before{
+  content:"";
+  position:absolute;
+  width:76%;
+  height:76%;
+  right:8%;
+  bottom:8%;
+  border-radius:50%;
+  background:radial-gradient(circle,rgba(221,194,145,.18),transparent 67%);
+  filter:blur(20px);
+  z-index:-1;
+}
+
+/* Categories: ivory cards, champagne details, less retail-like chrome. */
+.category-strip{
+  background:var(--lux-paper);
+  padding-top:88px;
+  padding-bottom:72px;
+}
+.section-head{margin-bottom:30px}
+.section-title{font-family:"Playfair Display",Georgia,serif;font-weight:400;font-size:clamp(32px,5vw,50px)}
+.category-grid{border-color:var(--lux-line);background:var(--lux-line)}
+.category-card{
+  min-height:260px;
+  background:var(--lux-paper);
+  padding:26px;
+}
+.category-card:hover{background:#f2eee5;box-shadow:0 18px 40px rgba(20,30,30,.07)}
+.category-icon{
+  width:64px;height:64px;border-radius:50%;
+  background:#f0eadf;
+  color:#806d4d;
+  box-shadow:inset 0 0 0 1px rgba(128,109,77,.12),0 12px 28px rgba(20,30,30,.06);
+}
+.category-meta span{color:#8a8172}
+.category-card strong{font-family:"Playfair Display",Georgia,serif;font-size:25px;font-weight:400}
+.category-arrow{border-color:rgba(20,25,25,.17)}
+.category-card:hover .category-arrow{background:#172c2d;border-color:#172c2d;color:#e3c995}
+
+/* Catalogue. */
+.shop{
+  background:#fff;
+  padding-top:80px;
+}
+.shop .section-head{align-items:flex-end}
+.shop .section-title{color:#121615}
+.toolbar{border-color:var(--lux-line);background:#faf8f4}
+.toolbar button{background:#faf8f4;color:#303635;letter-spacing:.04em}
+.products{background:var(--lux-line);border-color:var(--lux-line)}
+.product{background:#fffdf9}
+.product-image{background:linear-gradient(145deg,#f5f2eb,#ebe7dd)}
+.product-info{padding-top:21px}
+.product-brand{color:#8b8171;letter-spacing:.19em}
+.product-name{font-family:"Playfair Display",Georgia,serif;font-size:18px}
+.product-price{font-weight:500;color:#1b2220}
+.add{background:#142c2d;border-color:#142c2d;letter-spacing:.18em}
+.add:hover{background:#c5a875;border-color:#c5a875;color:#101514}
+.wish{background:rgba(255,253,249,.92)}
+
+/* Editorial / journal. */
+.editorial{background:#e9e5dc}
+.editorial-image{filter:saturate(.72) contrast(1.04)}
+.editorial-copy{background:#e9e5dc}
+.editorial-copy .eyebrow{color:#827764}
+.editorial-copy h2{color:#18201f;font-size:clamp(46px,7vw,88px)}
+.editorial-copy p{color:#5c615e;max-width:470px}
+.editorial-copy .btn-dark{background:#142c2d;border-color:#142c2d}
+
+/* Private list: make the conversion moment feel like a private invitation. */
+.newsletter{
+  background:
+    radial-gradient(circle at 50% 0%,rgba(197,168,117,.12),transparent 34%),
+    linear-gradient(145deg,#101b1b,#071011);
+  padding:100px 20px;
+}
+.newsletter h2{font-size:clamp(48px,9vw,86px);color:#f4eee2}
+.newsletter p{color:#a9adaa}
+.newsletter .eyebrow{color:#bba77f!important;letter-spacing:.28em}
+.newsletter-form{border-bottom-color:rgba(197,168,117,.52)}
+.newsletter-form input{color:#f5f0e6}
+.newsletter-form button{color:#d8c398}
+
+/* Footer. */
+footer{background:#080f10;border-top:1px solid rgba(197,168,117,.18)}
+.footer-brand{
+  font-family:"Playfair Display",Georgia,serif;
+  font-size:38px;
+  font-weight:400;
+  letter-spacing:-.055em;
+  color:#f0eadf;
+}
+.footer-tag{color:#8e9896}
+.footer-col h4{color:#8e806a}
+.footer-col a{color:#d7d9d7}
+.footer-col a:hover{color:#d8bf8b}
+.footer-bottom{border-top-color:rgba(255,255,255,.09);color:#66706e}
+
+/* Floating concierge button. */
+.chat{
+  width:60px;height:60px;
+  background:#f8f4ea;
+  border-color:rgba(197,168,117,.32);
+  box-shadow:0 18px 50px rgba(5,12,12,.22),0 0 0 6px rgba(197,168,117,.045);
+}
+.chat svg{fill:#142c2d}
+
+/* Search + drawer inherit the luxury palette. */
+.search-panel{background:rgba(248,246,241,.98)}
+.search-top{border-bottom-color:#1a2322}
+.search-top input{font-family:"Playfair Display",Georgia,serif}
+.search-suggestions a:hover{color:#8c7349}
+.drawer-panel{background:#f8f6f1}
+.drawer-head{border-bottom-color:var(--lux-line)}
+.drawer-title{font-family:"Playfair Display",Georgia,serif;font-size:22px;font-weight:400}
+.drawer-nav a{border-bottom-color:var(--lux-line)}
+.drawer-nav a:hover{color:#8b7148}
+
+/* Loader: the first impression must already say Scia Scenthesis. */
+.loader-brand{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:1px;
+}
+.loader-brand-scialine{
+  font-family:"DM Sans",Arial,sans-serif;
+  font-size:9px;
+  font-weight:700;
+  letter-spacing:.42em;
+  margin-right:-.42em;
+  color:rgba(197,168,117,.92);
+}
+.loader-brand > span:last-child{
+  font-family:"Playfair Display",Georgia,serif;
+  font-size:clamp(35px,8vw,52px);
+  letter-spacing:-.055em;
+}
+.loader-brand-sub{letter-spacing:.25em!important;color:#a89a7b!important}
+
+/* Product / section reveal has a little more vertical breathing room. */
+@media(min-width:760px){
+  .intro{padding-top:125px;padding-bottom:125px}
+  .collection-inner{min-height:820px}
+  .collection-perfume{bottom:-28px}
+  .category-strip{padding-top:105px;padding-bottom:88px}
+  .shop{padding-top:100px}
+}
+
+@media(max-width:759px){
+  .intro{padding-top:88px;padding-bottom:88px}
+  .intro::before{top:25px;right:18px;font-size:7px}
+  .collection-inner{min-height:735px;padding-top:62px}
+  .collection-title{font-size:clamp(61px,17vw,100px)}
+  .signature{font-size:43px;margin-top:38px}
+  .collection-copy{font-size:14px;max-width:65%;line-height:1.75}
+  .collection-link{font-size:10px;margin-top:28px}
+  .collection-perfume{width:min(64vw,315px);right:-14px;bottom:-8px}
+  .category-strip{padding-top:76px}
+  .category-card{min-height:220px;padding:20px}
+  .category-card strong{font-size:22px}
+  .shop{padding-top:72px}
+  .newsletter{padding-top:82px;padding-bottom:82px}
+}
+
+@media(max-width:430px){
+  .collection-inner{min-height:735px}
+  .collection-copy{max-width:66%;font-size:13px}
+  .collection-perfume{width:min(68vw,285px);right:-17px;bottom:-5px}
+}
+
+@media(prefers-reduced-motion:reduce){
+  .hero::before{display:none}
+}
+
 </style>
 </head>
 
@@ -1792,6 +2335,7 @@ p{
     </div>
 
     <div class="loader-brand">
+      <span class="loader-brand-scialine">SCIA</span>
       <span>Scenthesis</span>
     </div>
     <div class="loader-brand-sub">A signature worth remembering</div>
@@ -1821,7 +2365,7 @@ p{
     </button>
 
     <a class="logo" href="#top" aria-label="Scia Scenthesis home">
-      <span class="logo-mark"></span><span class="logo-word"> Scenthesis</span>
+      <span class="logo-mark"></span><span class="logo-word"><small>SCIA</small><strong>Scenthesis</strong></span>
     </a>
 
     <nav class="desktop-nav" aria-label="Primary navigation">
@@ -1947,6 +2491,14 @@ p{
     <p class="collection-copy">A collection built around pure perfume indulgence — expressive compositions designed to pull you deeper into a world of sensual woods, luminous florals and addictive amber.</p>
     <a class="collection-link" href="#shop">Discover the collection</a>
     <div class="orbit"></div>
+    <div class="collection-perfume" aria-hidden="true">
+      <img
+        src="https://i.postimg.cc/t4dh4jGC/IMG-2967.png"
+        alt=""
+        loading="eager"
+        decoding="async"
+      >
+    </div>
   </div>
 </section>
 
